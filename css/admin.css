@@ -1,0 +1,13 @@
+.product-attr-container {
+  padding: 20px;
+  border: 1px solid gray;
+}
+.product-attr-container .product-attr {
+  padding: 20px;
+  border: 1px solid gray;
+}
+
+.product-attr-container.default {
+  padding: 0;
+  border: 0;
+}/*# sourceMappingURL=admin.css.map */
