@@ -66,45 +66,37 @@
 
 
 		<header class="main-header">
-			<div class="container-fluid">
+			<div class="container">
 				<div class="row d-flex align-items-center justify-content-center">
-					<div class="col-auto">
+					<div class="col-md-2">
 						<div class="logo-container">
-							<a href="<?php echo home_url(); ?>">
+							<a href="<?php echo home_url().'/home'; ?>">
 								<img src="<?php echo get_template_directory_uri() . '/img/logo.png'; ?>" alt="<?php echo bloginfo('title'); ?>" class="header-logo">
 							</a>
 						</div>
 					</div>
 					<div class="col-md-8">
-						<div class="header-menu-container">
-							<ul class="header-menu text-center">
-								<li class="header-menu-item">All Products</li>
-								<li class="header-menu-item"><a href="#">Banners</a></li>
-								<li class="header-menu-item"><a href="#">Flags</a></li>
-								<li class="header-menu-item"><a href="#">Banner Stands</a></li>
-								<li class="header-menu-item"><a href="#">Trade Show</a></li>
-								<li class="header-menu-item"><a href="#">Tents</a></li>
-								<li class="header-menu-item"><a href="#">Table Throws</a></li>
-								<li class="header-menu-item"><a href="#">Rigids</a></li>
-								<li class="header-menu-item"><a href="#">Adhesives</a></li>
-								<li class="header-menu-item"><a href="#">Wall Art</a></li>
-								<li class="header-menu-item"><a href="#">Channel Letters</a></li>
-								<li class="header-menu-item"><a href="#">Custom SEG Fabric</a></li>
-							</ul>
-						</div>
+
+						<?php
+						wp_nav_menu( array(
+							'theme_location' => 'header-menu',
+							'container_class' => 'header-menu-container',
+							'menu_class' => 'header-menu text-center'
+						) );
+						?>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-2">
 
 						<?php if (!is_user_logged_in()) { ?>
 							<form class="header-account-form" method="POST" action="<?php echo site_url() . '/login'; ?>">
 								<div class="row align-items-center d-flex">
-									<div class="col-md-3 col-sm-6">
+									<!-- <div class="col-md-3 col-sm-6">
 										<input type="text" name="email" class="form-control" id="inlineFormInput" placeholder="Email">
 									</div>
 									<div class="col-md-3 my-1 col-sm-6">
 										<input name="password" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Password">
-									</div>
-									<div class="col-md-6 mb-sm-1 col-sm-12 text-center">
+									</div> -->
+									<div class="col-md-12 mb-sm-1 col-sm-12 text-center">
 										<button type="submit" class="btn btn-primary account-action-button p-0">login</button>
 										<a href="<?php echo site_url() . '/signup'; ?>" class="btn btn-danger account-action-button p-0">Register</a>
 									</div>
@@ -115,8 +107,8 @@
 						?>
 							<div class="header-menu-container account-menu">
 								<ul class="header-menu text-end">
-									<li class="header-menu-item"><a href="#">Orders</a></li>
-									<li class="header-menu-item"><a href="<?php echo site_url() . '/account'; ?>">My Account</a></li>
+									<li class="menu-item"><a href="#">Orders</a></li>
+									<li class="menu-item"><a href="<?php echo site_url() . '/account'; ?>">My Account</a></li>
 								</ul>
 							</div>
 

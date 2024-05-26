@@ -1,6 +1,6 @@
 .main-header {
   padding: 10px 0;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
   box-shadow: 2px -3px 5px 1px;
 }
 .main-header .logo-container .header-logo {
@@ -11,21 +11,56 @@
   margin: 0;
   list-style: none;
 }
-.main-header .header-menu-container .header-menu .header-menu-item {
+.main-header .header-menu-container .header-menu .menu-item {
   display: inline-block;
   margin: 0 9px !important;
   font-size: 14px;
   font-weight: 600;
 }
-.main-header .header-menu-container .header-menu .header-menu-item a {
+.main-header .header-menu-container .header-menu .menu-item a {
   color: #999;
   text-decoration: none;
 }
-.main-header .header-menu-container .header-menu .header-menu-item:hover a {
+.main-header .header-menu-container .header-menu .menu-item:hover a {
   color: #1fa8de;
 }
 .main-header .header-account-form .account-action-button {
   padding: 5px 10px !important;
+}
+
+.product-gallery-container {
+  overflow: hidden;
+  align-items: center;
+  display: flex;
+}
+.product-gallery-container .gallery-image-item {
+  width: 120px;
+  float: left;
+  border: 2px solid #eee;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.product-gallery-container .gallery-image-item img {
+  width: 100%;
+}
+
+.category-selecteor-container .category-selector {
+  float: left;
+  width: 32%;
+  margin-right: 1.3%;
+  padding: 5px;
+  border: 2px solid #999;
+  background-color: rgba(0, 0, 0, 0.05);
+  text-align: center;
+  border-radius: 10px;
+  font-size: 18px;
+  color: #333;
+  font-weight: 600;
+  cursor: pointer;
+}
+.category-selecteor-container .category-selector.active {
+  border-color: #1fa8de;
+  background-color: rgba(31, 168, 222, 0.1);
 }
 
 .product-attibute-box #letter-output {
@@ -88,6 +123,11 @@
 
 .product-details .product-title {
   font-weight: 600;
+}
+.product-details .thumbnail-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .product-details .single-product-thumbnail {
   width: 100%;
@@ -160,6 +200,18 @@
   }
   .main-header .account-menu ul {
     text-align: center !important;
+  }
+  .product-attibute-box {
+    padding: 10px;
+  }
+  .product-attibute-box #letter-output {
+    font-size: 45px !important;
+  }
+  .product-main-desc img {
+    max-width: 100%;
+  }
+  #payNowBtn {
+    max-width: 100%;
   }
   .product-box-container {
     padding: 20px;

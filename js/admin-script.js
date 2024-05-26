@@ -6,7 +6,7 @@
         // atrribute box button
         $('#addAttrBtn').click(e => {
 
-            let attrTitle = ($(e.currentTarget).siblings('.attr-title').val()).replace(' ', '-')
+            let attrTitle = (($(e.currentTarget).siblings('.attr-title').val()).replace(' ', '-')).replace(' ', '-')
             if (attrTitle.length < 1) {
                 alert('Please Enter Your Attribute Name');
                 return;
@@ -31,7 +31,7 @@
         // add option button click
         $(document).on('click', '.product-attr-container .addOptBtn', e => {
 
-            let opname = $(e.currentTarget).attr('data-opname');
+            let opname = $(e.currentTarget).attr('data-opname').toLowerCase();
             let optionHtml = '<div class="row opt-row"><div class="col"> <div class="form-group"> <label class="form-label">Variant Title</label><input type="text" placeholder="Single Sided" name="attr-name" data-opname="' + opname + '" class="variable-title form-control"> </div> </div>  <div class="col"> <div class="form-group"> <label class="form-label">Variant Price</label> <input value="0" data-opname="' + opname + '" type="text" placeholder="10" name="attr-price" class="variable-price form-control"></div></div></div>';
             $(e.currentTarget).siblings('.attibute-options').append(optionHtml);
         })

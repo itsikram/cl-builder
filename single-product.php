@@ -8,22 +8,29 @@ $product_metarial = get_post_meta(get_the_ID(), '_product_metarial', true);
 $product_print = get_post_meta(get_the_ID(), '_product_print', true);
 $product_lamination = get_post_meta(get_the_ID(), '_product_lamination', true);
 
-$product_min_height = floatVal(get_post_meta(get_the_ID(), '_min_height',true));
-$product_min_width = floatVal(get_post_meta(get_the_ID(), '_min_width',true));
+$product_min_height = floatVal(get_post_meta(get_the_ID(), '_min_height', true));
+$product_min_width = floatVal(get_post_meta(get_the_ID(), '_min_width', true));
 $product_min_sqft = $product_min_height * $product_min_width;
 
 
-$price_per_sqft = floatval(get_post_meta(get_the_ID(),'_price_per_sqft',true));
+$price_per_sqft = floatval(get_post_meta(get_the_ID(), '_price_per_sqft', true));
 
 $product_min_price = $product_min_sqft * $price_per_sqft;
 
-$product_attr_json = get_post_meta(get_the_ID(),'product_attr',true);
+$product_attr_json = get_post_meta(get_the_ID(), 'product_attr', true);
 $product_attr_array = json_decode($product_attr_json);
 
-$terms = get_the_terms( get_the_ID(), 'product_category' );
+$terms = get_the_terms(get_the_ID(), 'product_category');
 
 
-$product_category_slug = isset($terms[0])? $terms[0] -> slug : '';
+$product_category_slug = isset($terms[0]) ? $terms[0]->slug : '';
+
+if($product_category_slug  == 'channel-letters') {
+    $product_min_price = 0;
+}
+
+$product_gallery_images = get_post_meta(get_the_ID(), '_product_gallery', true);
+
 
 ?>
 
@@ -38,10 +45,29 @@ $product_category_slug = isset($terms[0])? $terms[0] -> slug : '';
                 the_post_thumbnail('', array('class' => 'single-product-thumbnail'));
                 ?>
             </div>
+            <?php if($product_gallery_images): ?>
+            <div class="product-gallery-container my-3">
 
-            <div class="product-price-per-sqft text-end py-2 text-secondary">
-                $<?php echo $price_per_sqft; ?> per ft<sup>2</sup>
+                <?php foreach ($product_gallery_images as $image) {
+                ?>
+                    <div data-image="<?php echo $image; ?>" class="gallery-image-item">
+
+                        <img src="<?php echo $image; ?>" alt="">
+                    </div>
+
+                <?php
+                } ?>
             </div>
+
+            <?php endif; ?>
+            <?php if ($product_category_slug == 'adhesive-products') { ?>
+
+
+                <div class="product-price-per-sqft text-end py-2 text-secondary">
+                    $<?php echo $price_per_sqft; ?> per ft<sup>2</sup>
+                </div>
+
+            <?php }; ?>
             <div class="prodcut-short-desc-container my-3">
                 <?php echo $short_desc; ?>
             </div>
@@ -49,188 +75,191 @@ $product_category_slug = isset($terms[0])? $terms[0] -> slug : '';
         <div class="col-md-6">
             <div class="product-attibute-box">
                 <input type="hidden" name="total_cost" value="<?php echo $product_min_price; ?>" id="totalCost">
-                <?php if($product_category_slug == 'adhesive-products') { ?>
+                <?php if ($product_category_slug == 'adhesive-products') { ?>
                     <input type="hidden" name="price_per_sqft" value="<?php echo $price_per_sqft; ?>" id="pricePerSqft">
 
-                <div class="row d-fex align-items-center">
-                    <div class="col-3">
-                        <label>Height</label>
-                    </div>
-                    <div class="col-9">
-                        <div class="row">
-                            <div class="col-6">
-                                <input placeholder="Ft" value="<?php echo $product_min_height; ?>" name="height-ft" min="<?php echo $product_min_height; ?>" type="number" id="input-height-ft"
-                                    class="form-control text-right">
-                            </div>
-                            <div class="col-6">
-                                <input type="number" name="height-in" max="12" placeholder="In" id="input-height-in"  class="form-control text-right" />
-                            </div>
+                    <div class="row d-fex align-items-center">
+                        <div class="col-3">
+                            <label>Height</label>
                         </div>
-
-                    </div>
-                </div> 
-
-                <div class="row d-fex align-items-center">
-                    <div class="col-3">
-                        <label>Width</label>
-                    </div>
-                    <div class="col-9 mt-2">
-                        <div class="row">
-                            <div class="col-6">
-                                <input placeholder="Ft" min="<?php echo $product_min_width; ?>" value="<?php echo $product_min_width; ?>" name="width-ft" type="number" id="input-width-ft"
-                                    class="form-control text-right">
-
+                        <div class="col-9">
+                            <div class="row">
+                                <div class="col-6">
+                                    <input placeholder="Ft" value="<?php echo $product_min_height; ?>" name="height-ft" min="<?php echo $product_min_height; ?>" type="number" id="input-height-ft" class="form-control text-right">
+                                </div>
+                                <div class="col-6">
+                                    <input type="number" name="height-in" max="12" placeholder="In" id="input-height-in" class="form-control text-right" />
+                                </div>
                             </div>
-                            <div class="col-6">
-                                <input type="number" max="12" name="width-in" placeholder="In" id="input-width-in"
-                                    class="form-control text-right">
-                            </div>
+
                         </div>
-
                     </div>
-                </div>
 
-                <div class="row mb-3">
-                    <div class="col-3">
+                    <div class="row d-fex align-items-center">
+                        <div class="col-3">
+                            <label>Width</label>
+                        </div>
+                        <div class="col-9 mt-2">
+                            <div class="row">
+                                <div class="col-6">
+                                    <input placeholder="Ft" min="<?php echo $product_min_width; ?>" value="<?php echo $product_min_width; ?>" name="width-ft" type="number" id="input-width-ft" class="form-control text-right">
 
+                                </div>
+                                <div class="col-6">
+                                    <input type="number" max="12" name="width-in" placeholder="In" id="input-width-in" class="form-control text-right">
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                    <div class="col-9">
-                    <span class="total-size-sqft"><?php echo $product_min_height * 12; ?>" x <?php echo $product_min_width * 12; ?>" = <?php echo $product_min_sqft; ?> ft<sup>2</sup></span>
 
+                    <div class="row mb-3">
+                        <div class="col-3">
+
+                        </div>
+                        <div class="col-9">
+                            <?php if ($product_category_slug == 'adhesive-products') { ?>
+                                <span class="total-size-sqft"><?php echo $product_min_height * 12; ?>" x <?php echo $product_min_width * 12; ?>" = <?php echo $product_min_sqft; ?> ft<sup>2</sup></span>
+
+                        </div>
+                    <?php }; ?>
                     </div>
-                </div> 
 
                 <?php };
-                if($product_category_slug == 'channel-letters'){
+                if ($product_category_slug == 'channel-letters') {
                 ?>
 
-                <div class="row">
-                    <div class="col">
-                        <div id="letter-output" class=" text-center fs-1 py-3">
-                            ENTER NAME
-                        </div>
-
-                    </div>
-                </div>
-                <div class="row my-3">
-                    <div class="col">
-                        <input type="text" id="letterInput" placeholder="ENTER NAME" class="form-control">
-                    </div>
-                </div>
-                <div class="row d-fex align-items-center  mt-2">
-                    <div class="col-md-3 col-4">
-                        <label for="select-font" class="text-capitalize">font</label>
-                    </div>
-                    <div class="col-8 col-md-9">
-                        <div class="row">
-                            <div class="col">
-                                <select id="select-font" data-ccost="0" class="form-select dynamic-select avoid-price">
-                                    <option value="type-writer">A. Typewriter Bold</option>
-                                    <option value="nimbus-sans">Nimbus Sans</option>
-                                    <option value="alegreya">Alegreya</option>
-                                    <option value="anton">Anton</option>
-                                </select>
+                    <div class="row">
+                        <div class="col">
+                            <div id="letter-output" class=" text-center fs-1 py-3">
+                                ENTER TEXT
                             </div>
-                        </div>
 
+                        </div>
                     </div>
-                </div>
+                    <div class="row my-3">
+                        <div class="col">
+                            <input type="text" id="letterInput" placeholder="ENTER TEXT" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row d-fex align-items-center  mt-2">
+                        <div class="col-md-3 col-4">
+                            <label for="select-font" class="text-capitalize">font</label>
+                        </div>
+                        <div class="col-8 col-md-9">
+                            <div class="row">
+                                <div class="col">
+                                    <select id="select-font" data-ccost="0" class="form-select dynamic-select avoid-price">
+                                        <option value="Arial">Arial</option>
+
+                                        <option value="type-writer">A. Typewriter Bold</option>
+                                        <option value="nimbus-sans">Nimbus Sans</option>
+                                        <option value="alegreya">Alegreya</option>
+                                        <option value="anton">Anton</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
 
 
 
                 <?php }; ?>
 
                 <?php
-                if($product_attr_array == true){
-                foreach($product_attr_array as $single_attr){ ?>
-                <div class="row d-fex align-items-center  mt-2">
-                    <div class="col-md-3 col-4">
-                        <label for="select-<?php echo $single_attr -> name; ?>"
-                            class="text-capitalize"><?php echo str_replace('-',' ', $single_attr -> name); ?></label>
-                    </div>
-                    <div class="col-8 col-md-9">
-                        <div class="row">
-                            <div class="col">
-                                <?php  if(count($single_attr -> options) !== 1){ ?>
-                                <select data-type="<?php echo $single_attr -> type; ?>" id="select-<?php echo $single_attr -> name; ?>" data-cCost="0"
-                                    class="form-select dynamic-select <?php echo $single_attr -> name != 'size' ? 'dynamic-price': '';?> <?php echo $single_attr -> cssClass; ?>">
-                                    <?php foreach($single_attr -> options as $option){ 
-                                            foreach($option as $name => $price){
-                                            ?>
-                                    <option <?php if($single_attr -> name == 'size'){?> data-size="<?php echo intval($name); ?>" <?php }; ?> value="<?php echo $price; ?>"><?php echo $name; ?></option>
-                                    <?php  }};?>
-                                </select>
-                                <?php }else {
+                if ($product_attr_array == true) {
+                    foreach ($product_attr_array as $single_attr) { ?>
+                        <div class="row d-fex align-items-center  mt-2">
+                            <div class="col-md-3 col-4">
+                                <label for="select-<?php echo $single_attr->name; ?>" class="text-capitalize"><?php echo str_replace('-', ' ', $single_attr->name); ?></label>
+                            </div>
+                            <div class="col-8 col-md-9">
+                                <div class="row">
+                                    <div class="col">
+                                        <?php if (count($single_attr->options) !== 1) { ?>
+                                            <select data-type="<?php echo $single_attr->type; ?>" id="select-<?php echo $single_attr->name; ?>" data-cCost="0" class="form-select dynamic-select <?php echo $single_attr->name != 'height' ? 'dynamic-price' : ''; ?> <?php echo $single_attr->cssClass; ?>">
+                                                <?php foreach ($single_attr->options as $option) {
+                                                    foreach ($option as $name => $price) {
+                                                ?>
+                                                        <option <?php if ($single_attr->name == 'height') { ?> data-size="<?php echo intval($name); ?>" <?php }; ?> value="<?php echo $price; ?>"><?php echo $name; ?></option>
+                                                <?php  }
+                                                }; ?>
+                                            </select>
+                                        <?php } else {
                                         ?>
 
-                                <?php foreach($single_attr -> options as $option){ 
-                                            foreach($option as $name => $price){
+                                            <?php foreach ($single_attr->options as $option) {
+                                                foreach ($option as $name => $price) {
                                             ?>
-                                <span><?php echo $name; ?></span>
-                                <?php  }};?>
-                                <?php
-                                    } ?>
+                                                    <input type="hidden" name="<?php echo str_replace('-', ' ', $single_attr->name); ?>" value="<?php echo $name; ?>">
+                                                    <span><?php echo $name; ?></span>
+                                            <?php  }
+                                            }; ?>
+                                        <?php
+                                        } ?>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-
-                    </div>
-                </div>
-                <?php }}; ?>
+                <?php }
+                }; ?>
 
 
-                <?php if ($product_metarial): ?>
-                <div class="row d-fex align-items-center  mt-4">
-                    <div class="col-md-2 col-4">
-                        <label>Material</label>
-                    </div>
-                    <div class="col-8 col-md-10">
-                        <div class="row">
-                            <div class="col">
-                                <span>
-                                    <?php echo $product_metarial; ?>
-                                </span>
-                            </div>
+                <?php if ($product_metarial) : ?>
+                    <div class="row d-fex align-items-center  mt-4">
+                        <div class="col-md-2 col-4">
+                            <label>Material</label>
                         </div>
+                        <div class="col-8 col-md-10">
+                            <div class="row">
+                                <div class="col">
+                                    <span>
+                                        <?php echo $product_metarial; ?>
+                                    </span>
+                                </div>
+                            </div>
 
+                        </div>
                     </div>
-                </div>
                 <?php endif;
-                if ($product_print): ?>
+                if ($product_print) : ?>
 
-                <div class="row d-fex align-items-center mt-2">
-                    <div class="col-4 col-md-2">
-                        <label>Print</label>
-                    </div>
-                    <div class="col-8 col-md-10">
-                        <div class="row">
-                            <div class="col">
-                                <span>
-                                    <?php echo $product_print; ?>
-                                </span>
-                            </div>
+                    <div class="row d-fex align-items-center mt-2">
+                        <div class="col-4 col-md-2">
+                            <label>Print</label>
                         </div>
+                        <div class="col-8 col-md-10">
+                            <div class="row">
+                                <div class="col">
+                                    <span>
+                                        <?php echo $product_print; ?>
+                                    </span>
+                                </div>
+                            </div>
 
+                        </div>
                     </div>
-                </div>
                 <?php endif;
 
-                if ($product_lamination): ?>
+                if ($product_lamination) : ?>
 
-                <div class="row d-fex align-items-center  mt-2">
-                    <div class="col-4 col-md-2">
-                        <label>Lamination</label>
-                    </div>
-                    <div class="col-8 col-md-10">
-                        <div class="row">
-                            <div class="col">
-                                <span>
-                                    <?php echo $product_lamination; ?>
-                                </span>
-                            </div>
+                    <div class="row d-fex align-items-center  mt-2">
+                        <div class="col-4 col-md-2">
+                            <label>Lamination</label>
                         </div>
+                        <div class="col-8 col-md-10">
+                            <div class="row">
+                                <div class="col">
+                                    <span>
+                                        <?php echo $product_lamination; ?>
+                                    </span>
+                                </div>
+                            </div>
 
+                        </div>
                     </div>
-                </div>
                 <?php endif; ?>
             </div>
 
@@ -241,8 +270,7 @@ $product_category_slug = isset($terms[0])? $terms[0] -> slug : '';
                             <span class="fs-6">Subtotal</span>
                         </div>
                         <div class="col-6 price-subtotal-container">
-                            <span class="fs-6 d-block "><span>$</span><span
-                                    class="price-subtotal"><?php echo $product_min_price; ?></span></span>
+                            <span class="fs-6 d-block "><span>$</span><span class="price-subtotal"><?php echo $product_min_price; ?></span></span>
                         </div>
                     </div>
                     <hr>
@@ -251,26 +279,25 @@ $product_category_slug = isset($terms[0])? $terms[0] -> slug : '';
                             <span class="fs-4">Total</span>
                         </div>
                         <div class="col-6 price-total-container">
-                            <span class="fs-4 d-block "><span>$</span><span
-                                    class="price-total"><?php echo $product_min_price; ?></span></span>
+                            <span class="fs-4 d-block "><span>$</span><span class="price-total"><?php echo $product_min_price; ?></span></span>
                         </div>
                     </div>
-                    <?php if(is_user_logged_in()){ ?>
-                    <div class="row">
-                        <div class="col text-center">
-                            <a href="#" id="payNowBtn" class="btn btn-success">Order Now</a>
+                    <?php if (is_user_logged_in()) { ?>
+                        <div class="row">
+                            <div class="col text-center">
+                                <a href="#" id="payNowBtn" class="btn btn-success">Order Now</a>
+                            </div>
                         </div>
-                    </div>
                     <?php } else {
-                        ?>
-                    <div class="row">
-                        <div class="col text-center">
-                            <a href="<?php echo site_url().'/login'; ?>" class="btn btn-primary">Login to order this
-                                product</a>
+                    ?>
+                        <div class="row">
+                            <div class="col text-center">
+                                <a href="<?php echo site_url() . '/login'; ?>" class="btn btn-primary">Login to order this
+                                    product</a>
+                            </div>
                         </div>
-                    </div>
-                    <?php 
-                    }?>
+                    <?php
+                    } ?>
 
                 </div>
             </div>
@@ -290,81 +317,81 @@ $product_category_slug = isset($terms[0])? $terms[0] -> slug : '';
 
 
 <script>
-(function($) {
-    $(document).ready(e => {
+    (function($) {
+        $(document).ready(e => {
 
 
-        // $('#payNowBtn').click(() => {
-        //     alert('clicked')
-        // })
-    })
-})(jQuery)
+            // $('#payNowBtn').click(() => {
+            //     alert('clicked')
+            // })
+        })
+    })(jQuery)
 </script>
 
 <script>
-const stripe = Stripe(
-    '<?php echo 'pk_test_51NWbhtBkPgGRflkhjqfJ4sVRfodWxqCeaTsgGhizrruZR5eNkZG4ebdGHesHTVdTFXxGSo6Mcp88HALuANAvZD2Z00GbRxzgbD'; ?>'
+    const stripe = Stripe(
+        '<?php echo 'pk_test_51NWbhtBkPgGRflkhjqfJ4sVRfodWxqCeaTsgGhizrruZR5eNkZG4ebdGHesHTVdTFXxGSo6Mcp88HALuANAvZD2Z00GbRxzgbD'; ?>'
     );
 
-// Select payment button
-const payBtn = document.getElementById("payNowBtn");
+    // Select payment button
+    const payBtn = document.getElementById("payNowBtn");
 
-// Payment request handler
-payBtn.addEventListener("click", function(evt) {
+    // Payment request handler
+    payBtn.addEventListener("click", function(evt) {
 
-    evt.preventDefault();
+        evt.preventDefault();
 
-    let isPayment = true;
-
-
-    if (isPayment) {
-        payBtn.innerText = 'Payment Procesing..'
+        let isPayment = true;
 
 
-        payBtn.setAttribute('disbled', 'true')
-        createCheckoutSession().then(function(data) {
-            if (data.sessionId) {
-                stripe.redirectToCheckout({
-                    sessionId: data.sessionId,
-                }).then(handleResult);
-            } else {
-                handleResult(data);
-            }
-        });
-    }
-
-});
-
-// Create a Checkout Session with the selected product
-const createCheckoutSession = function(stripe) {
+        if (isPayment) {
+            payBtn.innerText = 'Payment Procesing..'
 
 
+            payBtn.setAttribute('disbled', 'true')
+            createCheckoutSession().then(function(data) {
+                if (data.sessionId) {
+                    stripe.redirectToCheckout({
+                        sessionId: data.sessionId,
+                    }).then(handleResult);
+                } else {
+                    handleResult(data);
+                }
+            });
+        }
 
-    return fetch("<?php echo site_url(); ?>/payment", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            createCheckoutSession: 1,
-            cost: parseFloat(document.getElementById('totalCost').value),
-            currency: 'USD',
-            email: '',
+    });
 
-        }),
-    }).then(function(result) {
-        //console.log(result.json())
-        return result.json();
-    })
-};
+    // Create a Checkout Session with the selected product
+    const createCheckoutSession = function(stripe) {
 
-// Handle any errors returned from Checkout
-const handleResult = function(result) {
-    console.log(result)
-    if (result.error) {
-        console.log(result.error)
-    }
-};
+
+
+        return fetch("<?php echo site_url(); ?>/payment", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                createCheckoutSession: 1,
+                cost: parseFloat(document.getElementById('totalCost').value),
+                currency: 'USD',
+                email: '',
+
+            }),
+        }).then(function(result) {
+            //console.log(result.json())
+            return result.json();
+        })
+    };
+
+    // Handle any errors returned from Checkout
+    const handleResult = function(result) {
+        console.log(result)
+        if (result.error) {
+            console.log(result.error)
+        }
+    };
 </script>
 <?php
 
