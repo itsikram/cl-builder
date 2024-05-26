@@ -75,10 +75,10 @@ get_header();
                                     aria-controls="v-pills-account" aria-selected="true">Account Details</button>
                                 <button class="nav-link text-start" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-address" type="button" role="tab"
-                                    aria-controls="v-pills-address" aria-selected="false">Profile</button>
+                                    aria-controls="v-pills-address" aria-selected="false">Address</button>
                                 <button class="nav-link  text-start" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-password" type="button" role="tab"
-                                    aria-controls="v-pills-password" aria-selected="false">Messages</button>
+                                    aria-controls="v-pills-password" aria-selected="false">Password</button>
                                 <a href="<?php echo get_permalink() . '?logout=true' ?>"
                                     class="nav-link text-danger  text-start" id="v-pills-settings-tab" type="button"
                                     role="tab" aria-selected="false">Logout</a>
