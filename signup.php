@@ -15,6 +15,7 @@ if (isset($_REQUEST['email'])) {
     $fname = isset($_REQUEST['fname']) ? $_REQUEST['fname'] : '';
     $lname = isset($_REQUEST['lname']) ? $_REQUEST['lname'] : '';
     $website = isset($_REQUEST['website']) ? $_REQUEST['website'] : '';
+    $telephone = isset($_REQUEST['telephone']) ? $_REQUEST['telephone'] : '';
 
     if (email_exists($email)) {
         return wp_redirect(get_permalink() . '?type=danger&message=Email Already Exist');
@@ -37,12 +38,12 @@ if (isset($_REQUEST['email'])) {
                     // 'first_name' => $fname,
                     // 'last_name ' => $lname,
                     'website' => $website,
+                    'telephone' => $telephone
                 )
             )
         );
 
         wp_redirect(site_url() . '/login?type=success&message=Account Created Successfully');
-
     } catch (Exception $e) {
         print_r($e->getMessage());
     }
@@ -68,8 +69,7 @@ get_header();
                     <form method="POST">
                         <div class="form-group mb-2">
                             <label class="form-label">Email</label>
-                            <input type="text" required name="email" placeholder="Enter your Email"
-                                class="form-control">
+                            <input type="text" required name="email" placeholder="Enter your Email" class="form-control">
                         </div>
                         <div class="form-group mb-2">
                             <label class="form-label">Username</label>
@@ -79,8 +79,7 @@ get_header();
                                         @
                                     </div>
                                 </div>
-                                <input type="text" required name="username" placeholder="Enter your username"
-                                    class="form-control">
+                                <input type="text" required name="username" placeholder="Enter your username" class="form-control">
                             </div>
                         </div>
                         <div class="row">
@@ -102,21 +101,30 @@ get_header();
                         </div>
                         <div class="form-group mb-2">
                             <label class="form-label">Password</label>
-                            <input type="password" required name="password" placeholder="Enter your Password" required
-                                class="form-control">
+                            <input type="password" required name="password" placeholder="Enter your Password" required class="form-control">
                         </div>
                         <div class="form-group mb-2">
                             <label class="form-label">Confirm Password</label>
-                            <input type="password" name="confirm_password" placeholder="Confirm Password" required
-                                class="form-control">
+                            <input type="password" name="confirm_password" placeholder="Confirm Password" required class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="" class="form-label mb-0">Phone Number</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        +1
+                                    </div>
+                                </div>
+                                <input type="tel" required name="telephone" class="form-control">
+                            </div>
                         </div>
 
 
                         <div class="form-group mb-2">
                             <label class="form-label">Website</label>
 
-                            <input type="text" name="website" placeholder="https://your-website.com" required
-                                class="form-control">
+                            <input type="text" name="website" placeholder="https://your-website.com" required class="form-control">
                         </div>
 
                         <button type="submit" class="btn btn-primary">Sign Up</button>
