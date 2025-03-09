@@ -1,0 +1,76 @@
+[30-May-2024 21:25:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php on line 15
+[31-May-2024 08:14:34 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php on line 15
+[31-May-2024 20:18:10 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php on line 15
+[01-Jun-2024 08:13:05 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php on line 15
+[13-Jun-2024 20:11:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php on line 15
+[14-Jun-2024 02:57:14 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php on line 15
+[19-Jun-2024 19:22:18 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php on line 15
+[19-Jun-2024 20:15:34 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php on line 15
+[20-Jun-2024 02:57:29 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php on line 15
+[20-Jun-2024 08:20:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php on line 15
+[20-Jun-2024 20:11:54 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php on line 15
+[20-Jun-2024 20:17:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php on line 15
+[20-Jun-2024 20:23:13 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php on line 15
+[20-Jun-2024 20:24:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php on line 15
+[21-Jun-2024 02:57:14 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php on line 15
+[21-Jun-2024 08:11:38 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/y8k9eccamc0h/public_html/wp-content/themes/litsign/index.php on line 15
+[07-Dec-2024 12:03:34 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/y8k9eccamc0h/public_html/storefrontsignonline.com/wp-content/themes/wholesale/index.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/y8k9eccamc0h/public_html/storefrontsignonline.com/wp-content/themes/wholesale/index.php on line 15
+[14-Dec-2024 00:12:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/y8k9eccamc0h/public_html/storefrontsignonline.com/wp-content/themes/wholesale/index.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/y8k9eccamc0h/public_html/storefrontsignonline.com/wp-content/themes/wholesale/index.php on line 15
+[15-Dec-2024 00:12:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/y8k9eccamc0h/public_html/storefrontsignonline.com/wp-content/themes/wholesale/index.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/y8k9eccamc0h/public_html/storefrontsignonline.com/wp-content/themes/wholesale/index.php on line 15
